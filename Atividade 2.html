@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8">
+
+    <style>
+        header {
+            position: fixed;
+            top: 0%;
+            left: 0%;
+            height: 10%;
+            width: 100%;
+            background-color: aqua;
+            text-align: center;
+        }
+
+        main {
+            position: fixed;
+            top: 10%;
+            left: 0%;
+            height: 80%;
+            width: 100%;
+            background-color: aqua;
+            text-align: center;
+            overflow-x: auto;
+        }
+
+        footer {
+            position: fixed;
+            top: 90%;
+            left: 0%;
+            height: 10%;
+            width: 100%;
+            background-color: aqua;
+            text-align: center;
+        }
+
+        h3 {
+            font-size: xx-large;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1> Formulário </h1>
+    </header>
+
+    <main>
+        <form action="Atividade 2.html">
+            <h3> Nome: </h3>
+            <label for="pn"> Primeiro Nome </label>
+            <!-- Poderiamos colocar apenas um texto aqui, mas o label facilita a leitura do site para aparelhos, exemplo: pessoas cegas que necessitam desse tipo de leitura, o label ajuda na compreensão do aparelho -->
+            <input type="text" id="pn" name="nomeumm" value="Nome"><br>
+            <!-- o input coloca um botão do tipo texto com identificação fname e o value coloca dentro da caixa a frase nele escrita -->
+            <label for="sn"> Sobrenome </label>
+            <input type="text" id="sn" name="nomedoiss" value="Sobrenome"><br><br>
+
+            <label for="dt"> Data:</label>
+            <input type="date" id="dt" name="dta">
+
+            <h3> Sexo: </h3>
+            <input type="radio" id="masculino" name="genero" value="Masculino">
+            <label for="masculino"> Masculino </label>
+            <input type="radio" id="feminino" name="genero" value="Feminino">
+            <label for="feminino"> Feminino </label>
+            <input type="radio" id="outro" name="genero" value="Outro">
+            <label for="outro"> Não se aplica </label>
+
+            <h3> Atividades: </h3>
+            <input type="checkbox" id="atividade1" name="estudo" value="sim">
+            <label for="atividade1"> Eu estudo </label><br>
+            <input type="checkbox" id="atividade2" name="trabalho" value="sim">
+            <label for="atividade2"> Eu trabalho - Exerço atividade remunerada </label>
+
+            <h3> Nota: </h3>
+            <input type="number" id="nota" name="nota" min="0" max="10">
+            <label for="nota"> Nota </label>
+
+            <!-- 
+                tipo radio = é possível selecionar apenas 1 opção
+                tipo checkbox = é possível selecionar mais de 1 opção
+                -->
+
+            <h3> Moradia: </h3>
+            <label for="moradia"> Moradia: </label><br>
+            <select id="moradia" name="moradia">
+                <!-- o select abre uma área em que é possível ter varias opções de escolha -->
+                <option value="casa"> Casa </option> <!-- o option escreve a opção existente dentro do <select> -->
+                <option value="apartamento"> Apartamento </option>
+                <option value="fazenda"> Fazenda </option>
+                <option value="chácara"> Chácara </option>
+            </select>
+
+            <h3> Mensagem: </h3>
+            <textarea name="texto" id="me" rows="10" cols="60">
+                Deixe aqui sua mensagem    
+                </textarea>
+
+            <br><br>
+            <input type="reset" value="Limpa">
+            <input type="submit" value="Enviar" onclick="xyz()">
+            <br><br>
+
+            <h1> Retorno à página de acesso:<a href="E:\Programação\Programação Web\Aula de publicação\index.html"> CLIQUE AQUI </a></h1>
+        </form>
+
+        <script>
+            var nomum, nomdois, data, sex, est, trab, casa, tmen, select, texto, nota, mencao;
+            function xyz() {
+
+                nomum = document.getElementsByName("nomeumm")[0].value;
+                nomdois = document.getElementsByName("nomedoiss")[0].value;
+                data = document.getElementsByName("dta")[0].value;
+                sex = document.querySelector('input[name="genero"]:checked').value;
+                nota = document.getElementById("nota").value;
+
+                if (document.getElementById('atividade1').checked) {
+                    est = "sim";
+                }
+                else {
+                    est = "não";
+                }
+
+                if (document.getElementById('atividade2').checked) {
+                    trab = "sim";
+                }
+                else {
+                    trab = "não";
+                }
+
+                if (nota <= 4){
+                    mencao = "I";
+                } 
+                
+                if (nota >= 5){
+                    mencao = "R";
+                } 
+
+                if (nota >= 7){
+                    mencao = "B";
+                } 
+
+                if (nota >= 9){
+                    mencao = "MB";
+                } 
+
+                select = document.getElementById('moradia');
+                casa = select.options[select.selectedIndex].value;
+                tmen = document.getElementById("me").value;
+                texto = nomum + " " + nomdois + " é do genero " + sex + " cadastrado em " + data + " " + "trabalha:" + " " + trab + " " +"estuda:" + " " + est + " " + "mora em" + " " + casa + " " + "e deixou a seguinte mensagem:" + " " + tmen + " " + "sua menção é:" + mencao;
+
+                alert(texto);
+            }
+        </script>
+    </main>
+
+    <footer>
